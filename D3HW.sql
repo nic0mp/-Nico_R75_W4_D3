@@ -45,9 +45,19 @@ GROUP BY(first_name, last_name)
 -- 6. How many movies of each rating are there?
 SELECT rating,film_id, title
 FROM film
+WHERE rating = 'R';
 
-
+SELECT *
+FROM film_category
 
 -- 7.Show all customers who have made a single payment above $6.99 (Use Subqueries)
+SELECT DISTINCT(customer_id)
+FROM payment
+WHERE customer_id IN(
+    SELECT customer_id
+    FROM customer
+    GROUP BY customer_id
+)GROUP BY payment.payment_id HAVING COUNT(amount)=1
+;
 
 -- 8. How many free rentals did our stores give away?

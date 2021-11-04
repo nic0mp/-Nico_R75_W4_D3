@@ -35,6 +35,23 @@ FULL JOIN country
 ON city.country_id = country.country_id
 WHERE country = 'Nepal';
 
+--OTHER SOLUTION
+SELECT first_name, last_name
+FROM customer
+WHERE address_id IN(
+	SELECT address_id
+	FROM address
+	WHERE city_id IN(
+		SELECT city_id
+		FROM city
+		WHERE country_id IN(
+			SELECT country_id
+			FROM country
+			WHERE country = 'Nepal'
+		)
+	)
+);
+
 -- 5. Which staff member had the most transactions?
 SELECT first_name, last_name, COUNT(payment.payment_id)
 FROM staff
@@ -61,3 +78,6 @@ WHERE customer_id IN(
 ;
 
 -- 8. How many free rentals did our stores give away?
+SELECT COUNT(amount)
+FROM payment
+WHERE amount = 0.00;

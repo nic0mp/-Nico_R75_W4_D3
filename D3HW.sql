@@ -43,8 +43,9 @@ ON staff.staff_id = payment.staff_id
 GROUP BY(first_name, last_name)
 
 -- 6. How many movies of each rating are there?
-SELECT *
+SELECT rating,film_id, title
 FROM film
+
 
 
 -- 7.Show all customers who have made a single payment above $6.99 (Use Subqueries)
